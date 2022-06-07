@@ -10,11 +10,11 @@ export default (url,data={},method='GET')=> new Promise((resolve,reject)=>{
 		method,
 		data,
 		success: (res)=>{
-			if(res.data.meta.status === 200){
+			if(res.data.meta?.status === 200){
 				resolve(res.data)
 			}else{
 				uni.showToast({
-					title:res.data.meta.msg,
+					title:'请求异常',
 					icon:'error'
 				})
 				return new Promise(()=>{})
@@ -22,8 +22,9 @@ export default (url,data={},method='GET')=> new Promise((resolve,reject)=>{
 			
 		},
 		fail: (error) => {
+			console.log('error--- ',error)
 			uni.showToast({
-				title:error.message,
+				title:"请求错误",
 				icon:'error'
 			})
 			return new Promise(()=>{})
