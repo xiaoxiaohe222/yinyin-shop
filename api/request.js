@@ -1,5 +1,5 @@
-// const baseUrl = `https://www.uinav.com`
-const baseUrl = `http://api-ugo-web.itheima.net`
+const baseUrl = `https://www.uinav.com`
+// const baseUrl = `http://api-ugo-web.itheima.net`
 export default (url,data={},method='GET')=> new Promise((resolve,reject)=>{
 	// 配饰loading效果
 	uni.showLoading({
