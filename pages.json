@@ -35,7 +35,7 @@
 			{
 				"path": "goods_detail/goods_detail",
 				"style": {
-					"navigationBarTitleText": "",
+					"navigationBarTitleText": "详情",
 					"enablePullDownRefresh": false
 				}
 
@@ -44,8 +44,8 @@
                     "path" : "goods_list/goods_list",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
+                    "navigationBarTitleText": "列表",
+                    "enablePullDownRefresh": true
 					
                 }
                 
@@ -54,7 +54,7 @@
                     "path" : "search/search",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
+                    "navigationBarTitleText": "搜索",
                     "enablePullDownRefresh": false
                 }
                 

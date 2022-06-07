@@ -1,7 +1,7 @@
 <template>
 	<view class="cate-container">
 		<!-- 搜索部分 -->
-		<MySearch></MySearch>
+		<MySearch @click.native='goSearch'></MySearch>
 		<!-- 滑动区域部分 -->
 		<view class="scroll">
 			<!-- 滑动的左侧区域 -->
@@ -45,9 +45,15 @@
 			this.getCateList()
 		},
 		methods: {
+			goSearch(){
+				uni.navigateTo({
+					url:"/subpkg/search/search"
+				})
+			},
 			toDetail(item){
 				uni.navigateTo({
-					url:"/subpkg/goods_detail/goods_detail?cid="+item.cat_id
+					// url:"/subpkg/goods_detail/goods_detail?cid="+item.cat_id
+					url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
 				})
 			},
 			scroll(e) {
