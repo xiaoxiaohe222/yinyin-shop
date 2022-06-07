@@ -1,9 +1,7 @@
 <template>
 	<view class="cate-container">
 		<!-- 搜索部分 -->
-		<view class="search">
-			我是搜索头部
-		</view>
+		<MySearch></MySearch>
 		<!-- 滑动区域部分 -->
 		<view class="scroll">
 			<!-- 滑动的左侧区域 -->
@@ -80,6 +78,7 @@
 <style lang="scss">
 	.cate-container {
 		height: 100%;
+		padding-top: 100rpx;
 
 		.search {
 			height: 100rpx;

@@ -1,5 +1,6 @@
 <template>
 	<view class="home-container">
+		<MySearch @click.native='goSearch'></MySearch>
 		<!-- 轮播图区域 -->
 		<swiper class="swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 			<swiper-item class="swiper-item" v-for="item in swiperList" :key="item.goods_id">
@@ -47,6 +48,11 @@
 				this.getFlootList()
 		},
 		methods: {
+			goSearch(){
+				uni.navigateTo({
+					url:"/subpkg/search/search"
+				})
+			},
 			async getSwiperList() {
 				const res = await this.$http('/api/public/v1/home/swiperdata')
 				this.swiperList = res.message
@@ -71,6 +77,9 @@
 </script>
 
 <style lang="scss">
+	.home-container{
+		padding-top: 100rpx;
+	}
 	.swiper {
 		width: 100vw;
 		height: calc(100vw * 340 / 750);
