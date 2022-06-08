@@ -9,9 +9,14 @@ App.mpType = 'app'
 // 引入封装的api
 import request from './api/request.js'
 Vue.prototype.$http = request
+//引入vuex
+import store from './store'
+
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
+
 app.$mount()
 // #endif
 

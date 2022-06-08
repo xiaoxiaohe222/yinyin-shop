@@ -1,14 +1,22 @@
 <script>
+	import {mapGetters} from 'vuex'
 	export default {
 		onLaunch: function() {
 			// console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！')
 			// console.log('App Launch')
+			uni.setTabBarBadge({
+				index:2,
+				text:this.total ? this.total + '' :this.total
+			})
 		},
 		onShow: function() {
 			// console.log('App Show')
 		},
 		onHide: function() {
 			// console.log('App Hide')
+		},
+		computed:{
+			...mapGetters('cart',['total'])
 		}
 	}
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<view class="detail-container">
+	<view class="detail-container" v-if="goodInfo.goods_name">
 		<!-- 轮播图区域 -->
 		<swiper class="swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" circular>
 			<swiper-item @click="preview(index)" v-for="(item,index) in goodInfo.pics" :key='index'>
@@ -35,12 +35,12 @@
 				<text>店铺</text>
 			</view>
 			<view class="cart" @click="toCart">
-				<view class="count">3</view>
+				<view class="count" v-if="cart.length">{{ total}}</view>
 				<uni-icons class="icon" type="cart" size="26"></uni-icons>
 				<text>购物车</text>
 			</view>
 			<view class="btns">
-				<view class="join">
+				<view class="join" @click="addCart">
 					加入购物车
 				</view>
 				<view class="buy">
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+	import { mapState ,mapGetters } from 'vuex' 
 	export default {
 		data() {
 			return {
@@ -63,7 +64,35 @@
 			this.goods_id = options.goods_id;
 			this.getGoodInfo()
 		},
+		computed:{
+			...mapState('cart',['cart']),
+			...mapGetters('cart',['total'])
+		},
 		methods:{
+			addCart(){
+				// 添加进购物车之前，先判断库存数量是否充足
+				if(this.goodInfo.goods_number < 1){
+					return uni.showToast({
+						title:"该商品库存不足...",
+						icon:'error'
+					})
+				}
+				const obj = {}
+				obj.goods_id = this.goodInfo.goods_id;
+				obj.goods_name = this.goodInfo.goods_name;
+				obj.goods_price= this.goodInfo.goods_price;
+				obj.goods_logo= this.goodInfo.goods_small_logo;
+				obj.goods_number = this.goodInfo.goods_number;
+				obj.goods_count =  1;
+				obj.is_checked = true;
+				
+				this.$store.commit('cart/ADD_CART',obj)
+				uni.showToast({
+					title:'加入购物车成功',
+					icon:'success'
+				})
+				
+			},
 			toCart(){
 				uni.switchTab({
 					url:"/pages/cart/cart"

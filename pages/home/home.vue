@@ -34,6 +34,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -42,10 +43,19 @@
 				floorList: []
 			};
 		},
+		onShow() {
+			uni.setTabBarBadge({
+				index:2,
+				text:this.total ? this.total + '' :this.total
+			})
+		},
 		created() {
 			this.getSwiperList(),
 				this.getNavList(),
 				this.getFlootList()
+		},
+		computed:{
+			...mapGetters('cart',['total'])
 		},
 		methods: {
 			goSearch(){
